@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+from pathlib import Path
 import streamlit as st
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import PromptTemplate
 
 # -------------------------------------------------------------------
 # ✅ sqlite3 호환 (Streamlit Cloud 등 일부 환경에서 Chroma가 sqlite3 빌드 이슈를 일으킬 때 대응)
@@ -165,6 +168,7 @@ if prompt_message := st.chat_input("질문을 입력하세요"):
                 for doc in response.get("context", []):
                     src = doc.metadata.get("source", "source")
                     st.markdown(src, help=doc.page_content)
+
 
 
 
